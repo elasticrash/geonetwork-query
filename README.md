@@ -2,6 +2,7 @@ geonetwork-query
 ================
 
 JavaScript function for making geonetwork XML queries
+###requires jquery
 
 1. Create an html form
 2. Fill the search_criteria object in the ```createRequestSearchCriteriaObject()``` function from the form elements or any other way you like
