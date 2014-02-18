@@ -225,3 +225,36 @@ function createAdvancedRequest(search_criteria) {
 
 	return request;
 }
+
+function xmlCleaner(xml) {
+	xml = replaceAll("<ows:", "<", xml);
+	xml = replaceAll("</ows:", "</", xml);
+	xml = replaceAll("<ogc:", "<", xml);
+	xml = replaceAll("</ogc:", "</", xml);
+	xml = replaceAll("<csw:", "<", xml);
+	xml = replaceAll("</csw:", "</", xml);
+	xml = replaceAll("<dc:", "<", xml);
+	xml = replaceAll("</dc:", "</", xml);
+	xml = replaceAll("<dct:", "<", xml);
+	xml = replaceAll("</dct:", "</", xml);
+	xml = replaceAll("<inspire:", "<", xml);
+	xml = replaceAll("</inspire:", "</", xml);
+	xml = replaceAll("<gmd:", "<", xml);
+	xml = replaceAll("</gmd:", "</", xml);
+	xml = replaceAll("<gco:", "<", xml);
+	xml = replaceAll("</gco:", "</", xml);
+	xml = replaceAll("<srv:", "<", xml);
+	xml = replaceAll("</srv:", "</", xml);
+	xml = replaceAll('xmlns:', '', xml);
+	xml = replaceAll('xsi:', '', xml);
+	xml = replaceAll('</che:CHE_', '</', xml);
+	xml = replaceAll('<che:CHE_', '<', xml);
+
+	xml = replaceAll('gco:nilReason="missing"', '', xml); //not necessary, in case there are some missing elements and the XML cannot be mapped
+
+	return xml;
+}
+
+function replaceAll(find, replace, str) {
+	return str.replace(new RegExp(find, 'g'), replace);
+}
