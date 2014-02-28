@@ -1,37 +1,44 @@
-function createRequestSearchCriteriaObject() {
-	var dateFrom = new Date();
-	var dateTo = new Date();
+function createRequestSearchCriteriaObject(title,abstracts,resourceidentifier,type,keyword,topiccategory,dateFrom,dateTo,calendartype,organisationname,responsiblepartyrole,conditionapplyingtoaccessanduse,accessconstraints,lineage,specificationtitle,denominator,distancevalue,distanceuom,degree) {
+
+//all parameters that are not supposed to be part of the search should either be null or empty strings
 
 
 	var search_criteria = {};
 
 	search_criteria = {
-		title : "",
-		abstracts : "",
-		resourceidentifier : "",
-		type : "",
-		keyword : "",
-		topiccategory : "",
+		title : title,
+		abstracts : abstracts,
+		resourceidentifier : resourceidentifier,
+		type : type,
+		keyword : keyword,
+		topiccategory : topiccategory,
 		from : dateFrom,
 		to : dateTo,
-		calendartype :"",
-		organisationname : "",
-		responsiblepartyrole : "",
-		conditionapplyingtoaccessanduse : "",
-		accessconstraints :"",
-		lineage : "",
-		specificationtitle :"",
-		denominator : "",
-		distancevalue : "",
-		distanceuom : "",
-		degree : "",
-		bbox : map.getExtent(),                                              // new OpenLayers.Map
-		tight : false,                                                         // false:PropertyIsLike true:PropertyIsEqualTo
-		search_request_method : "advance",                                    // "or simple"
-		server: 'http://localhost:8080/geonetwork/srv/eng/csw?service=CSW',  // geonetwork url
+		calendartype :calendartype,
+		organisationname : organisationname,
+		responsiblepartyrole : responsiblepartyrole,
+		conditionapplyingtoaccessanduse : conditionapplyingtoaccessanduse,
+		accessconstraints : accessconstraints,
+		lineage : lineage,
+		specificationtitle : specificationtitle,
+		denominator : denominator,
+		distancevalue : distancevalue,
+		distanceuom : distanceuom,
+		degree : degree,
+		// this is the map extent of a OpenLayers.Map
+		bbox : map.getExtent(),
+		// false:PropertyIsLike true:PropertyIsEqualTo
+		tight : false,   
+		// "or simple" for a generic search
+		search_request_method : "advance",
+		// the geonetwork url
+		server: 'http://localhost:8080/geonetwork/srv/eng/csw?service=CSW', 
+		//the metadata schema
 		outputschema: 'outputSchema="http://www.isotc211.org/2005/gmd"',
-		start: 0,                                                           //for paging purposes
-		limit: 25                                                           //limit results for paging purposes
+		//begin from x result for paging purposes
+		start: 0,   
+		//limit results for paging purposes
+		limit: 25                                                           
 	};
 
 	return search_criteria;
